@@ -11,6 +11,7 @@ const coordTuneMatch = {
 };
 
 const signUp = async (req = request, res = response) => {
+  let distancia = 'No tenemos tu distancia'
   const { nombre, correo, password, ...rest } = req.body
   try {
     const salt = bycript.genSaltSync()
@@ -53,8 +54,7 @@ const logIn = async (req = request, res = response) => {
     const { correo, password, ...rest } = req.body
     const usuario = await Usuario.findOne({
       correo,
-      activo: true,
-      google: false
+      activo: true
     })
 
     if ('ultimaPosicion' in rest) {
@@ -142,8 +142,19 @@ const googleAuth = async (req, res = response) => {
   }
 }
 
+const creatingProfile = async (req = request, res = response) => {
+  const { ...rest } = req.body
+  try {
+    const usuario = new Usuario()
+
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 module.exports = {
   signUp,
   logIn,
-  googleAuth
+  googleAuth,
+  creatingProfile
 }

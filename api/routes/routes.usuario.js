@@ -2,7 +2,8 @@ const { Router } = require('express')
 const {
   signUp,
   logIn,
-  googleAuth
+  googleAuth,
+  creatingProfile
 } = require('../controller/usuario.controller')
 
 const router = Router()
@@ -16,5 +17,6 @@ const {
 router.post('/sign-up', POST_SIGN_UP, signUp)
 router.post('/login', POST_LOGIN, logIn)
 router.post('/google', POST_GOOGLE, googleAuth)
+router.post('./profile', creatingProfile)
 
 module.exports = router

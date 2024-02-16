@@ -14,6 +14,7 @@ const UsuariosSchema = Schema({
     type: String,
     required: [true, 'Debe ingresar una contraseña']
   },
+
   miGenero: { type: String },
 
   fotos: [{ type: String }],
@@ -23,9 +24,23 @@ const UsuariosSchema = Schema({
     required: [true, 'debe Ingresar al menos una banda']
   },
 
+  ciudad: {
+    type: String
+  },
+
   generos: {
     type: [{ type: String }],
     required: [true, 'Al menos debe seleccionar un género músical']
+  },
+
+  sugerencias: {
+    type: [Schema.Types.Mixed],
+    default: []
+  },
+
+  likes: {
+    type: [Schema.Types.Mixed],
+    default: []
   },
 
   tuneMatch: {
@@ -43,8 +58,11 @@ const UsuariosSchema = Schema({
       default: null
     }
   },
+  enbuscaDe: [{ type: String }],
 
-  enBuscaDe: [{ type: String }],
+  descripcion: [{ type: String }],
+
+  baneado: { type: Boolean, default: false },
 
   activo: { type: Boolean, default: true },
 
