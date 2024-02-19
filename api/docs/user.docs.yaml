@@ -70,6 +70,26 @@ paths:
           description: Login correctamente el usuario
         "500":
           description: Error al intentar conectar a la db
+
+
+  /api/usuario/{userId}:
+    get:
+      summary: traer un usuario
+      tags:
+        - User
+      parameters:
+        - name: userId
+          in: path
+          description: id de usuario
+          schema:
+            type: String
+      
+
+      responses:
+        "201":
+          description: Se trajo correctamente el usuario
+        "500":
+          description: Error al intentar conectar a la db
   
 
 
