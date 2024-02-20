@@ -7,6 +7,7 @@ CLIENT
 ------
 Ejecutar "npm run dev"
 En el prompt seleccionar h, y luego o
+Para ejecutar mostrando todas las IPs (prueba desde otro dispositivo): npm run dev -- --host
 
 
 API/BACKEND
