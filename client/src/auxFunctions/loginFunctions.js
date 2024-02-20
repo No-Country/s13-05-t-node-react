@@ -1,16 +1,25 @@
-export const authenticateUser = async (email, password) => {
-  // Llama al endpoint de autenticación con fetch
-  // y devolver la respuesta
+export const authenticateUser = async (correo, password) => {
   try {
     const response = await fetch("http://localhost:8080/api/usuario/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ correo, password }),
     });
-    const data = await response.json();
-    return data;
+
+    // Verifica si response fue exitosa
+    if (response.ok) {
+      const data = await response.json();
+      return { status: response.status, success: true, message: data.message };
+    } else {
+      const errorData = await response.json();
+      return {
+        status: response.status,
+        success: false,
+        message: errorData.message,
+      };
+    }
   } catch (error) {
     console.error("Error de autenticación:", error);
     return { success: false, message: "Hubo un error al iniciar sesión." };

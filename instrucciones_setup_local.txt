@@ -1,17 +1,21 @@
-Vamos a poner el paso a paso para ejecutarlo localmente?
+Pasos para correr el proyecto localmente.
 
-En cada carpeta (api o client) ejecutar
-npm i
+- Clonado del repo: 
+    git clone https://github.com/No-Country/s13-05-t-node-react.git
+
+En la carpeta "api" ejecutar el siguiente comando para instalar o actualizar dependencias:
+    npm i
+
+En la carpeta "client" ejecutar el siguiente comando para instalar o actualizar dependencias:
+    npm i
 
 CLIENT
 ------
 Ejecutar "npm run dev"
 En el prompt seleccionar h, y luego o
-Para ejecutar mostrando todas las IPs (prueba desde otro dispositivo): npm run dev -- --host
-
 
 API/BACKEND
 -----------
+Ejecutar dentro de la carpeta api: npm start
 
-Documentación: http://localhost:8080/docs
-npm start
+Documentación Swagger: http://localhost:8080/docs

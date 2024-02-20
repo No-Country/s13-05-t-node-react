@@ -1,5 +1,0 @@
-Historial de pruebas realizadas (hasta que me sepa MD y lo pase a Markdown).
-
-2024-02-10 - Volcado de épicas e historias de usuario a Trello.
-
-Ya la soné de entrada}

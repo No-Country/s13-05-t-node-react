@@ -1,4 +1,5 @@
 const Input =  ({
+    /* eslint-disable */
     labelText,
     type,
     placeholder,
@@ -6,14 +7,15 @@ const Input =  ({
     change,
     register,
     error,
+    /* eslint-disable */
 }) => 
 {
     return (
-        <>
-            <div>
+        <div>
+            <div className="w-full -mb-5">
                 <label
                     htmlFor={name}
-                    className="flex mb-2 ml-1 text-sm font-medium text-gray-900 dark:text-white"
+                    className="flex mb-1 text-white "
                 >
                     {labelText}
                 </label>
@@ -21,13 +23,16 @@ const Input =  ({
                     type={type || "text"}
                     {...(register && { ...register(name) })}
                     name={name}
-                    className="bg-gray-50 border border-primary-800 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="w-full px-2 py-2 bg-gradient-to-b from-[#A9B5B4] to-[#9AC9C4] rounded-lg placeholder:text-gray-500 text-black outline-none appearance-none border-none"
                     placeholder={placeholder}
                     onChange={change && change}
                 />
             </div>
             <span className="text-red-600">{error ? error : "\u00A0"}</span>
-        </>
+        </div>
+        
+         
+        
     );
 }
 

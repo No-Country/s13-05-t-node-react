@@ -1,0 +1,34 @@
+paths:
+  /api/musicalGenre:
+    post:
+      summary: Agregar un genero musical
+      tags:
+      - MusicalGenre
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                status:
+                  type: string
+      responses:
+        "201":
+          description: Se agrego correctamente el genero musical
+        "500":
+          description: Error al intentar conectar a la db
+
+components:
+  schemas:
+    MusicalGenre:
+      type: object
+      properties:
+        name:
+          type: String
+          description: nombre del genero musical
+        status:
+          type: String
+          description: Estado del genero musical en la base de datos (pending | active | closed)

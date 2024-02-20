@@ -6,6 +6,7 @@ import { FaHeart, FaRegBell } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
 import { FiMessageCircle } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
+import LOGOBLACK from '../../assets/LOGOBLACK.png'
 
 function NavBar() {
   return (
@@ -16,9 +17,7 @@ function NavBar() {
             to={HOME}
             className="btn bg-inherit border-none hover:bg-inherit text-xl "
           >
-            <span className="hidden sm:inline-block text-black ">
-              TuneMach
-            </span>
+            <img src={LOGOBLACK} alt="" />
           </Link>
         </div>
         <div className="flex gap-5 justify-between items-center">
