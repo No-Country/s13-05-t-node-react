@@ -1,0 +1,27 @@
+Pasos para correr el proyecto localmente.
+
+- Clonado del repo: 
+    git clone https://github.com/No-Country/s13-05-t-node-react.git
+
+En la carpeta "api" ejecutar el siguiente comando para instalar o actualizar dependencias:
+    npm i
+
+En la carpeta "client" ejecutar el siguiente comando para instalar o actualizar dependencias:
+    npm i
+
+CLIENT
+------
+Ejecutar "npm run dev"
+En el prompt seleccionar h, y luego o
+Para probarlo mediante la IP, en vez de "localhost", a fin de accederlo desde otros dispositivos:
+    npm run dev -- --host
+    Provee la lista de todas las IPs del equipo.
+
+API/BACKEND
+-----------
+Ejecutar dentro de la carpeta api: npm start
+
+Documentación Swagger: http://localhost:8080/docs
+
+KAOS
+

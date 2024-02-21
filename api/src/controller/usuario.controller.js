@@ -1,8 +1,9 @@
 const { request, response } = require('express')
 const bycript = require('bcryptjs')
-const Usuario = require('../models/usuarios')
-const calcularDistancia = require('../helpers/distance/haversine')
-const googleCheck = require('../helpers/googleCheck')
+const Usuario = require('../models/usuarios.models.js')
+const calcularDistancia = require('../../helpers/distance/haversine.js')
+const googleCheck = require('../../helpers/googleCheck.js')
+const usuarios = require('../models/usuarios.models.js')
 
 
 const coordTuneMatch = {
@@ -11,7 +12,6 @@ const coordTuneMatch = {
 };
 
 const signUp = async (req = request, res = response) => {
-  let distancia = 'No tenemos tu distancia'
   const { nombre, correo, password, ...rest } = req.body
   try {
     const salt = bycript.genSaltSync()
@@ -142,19 +142,17 @@ const googleAuth = async (req, res = response) => {
   }
 }
 
-const creatingProfile = async (req = request, res = response) => {
-  const { ...rest } = req.body
-  try {
-    const usuario = new Usuario()
+const getUser = async (req, res) => {
+  const { id } = req.params
+  const user = await usuarios.findOne({ _id: id })
 
-  } catch (e) {
-    console.log(e)
-  }
+  if (!user) return res.json({ error: "No existe el usuario" })
+  res.json(user)
 }
 
 module.exports = {
   signUp,
   logIn,
   googleAuth,
-  creatingProfile
+  getUser
 }

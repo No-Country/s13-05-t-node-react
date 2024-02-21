@@ -1,5 +1,5 @@
 const { check } = require('express-validator')
-const validarCampos = require('../../middlewares/validarCampos')
+const validarCampos = require('../../src/middlewares/validarCampos')
 
 const POST_SIGN_UP = [
   check('nombre')
