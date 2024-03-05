@@ -12,6 +12,8 @@ import useGeneros from "../../hooks/useGeneros";
 import ModalBandas from "../Modal/ModalBandas";
 import useBands from "../../hooks/useBands";
 import ModalNombre from "../Modal/ModalNombre";
+import ModalImagen from "../Modal/ModalImagen"
+
 function ProfileCard({
   img,
   nombre,
@@ -54,6 +56,10 @@ function ProfileCard({
             alt="Avatar"
             className="w-32 h-32 rounded-full border-4 border-white shadow-lg"
           />
+          <ModalImagen
+            titulo={"Imagenes"}
+          />
+
         </div>
 
         {/* Info */}
@@ -64,7 +70,6 @@ function ProfileCard({
               <h1 className="text-2xl text-black font-semibold mb-2">
                 {nombre}
               </h1>
-              {/* <ModalComponent titulo={"Nombre"} id={1} /> */}
               <ModalNombre titulo={"Nombre"} />
             </div>
             <div className="flex items-center gap-6 mb-4">

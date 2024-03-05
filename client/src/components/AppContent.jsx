@@ -27,6 +27,8 @@ import { selectIsLoggedIn } from "../redux/authSlice";
 import MatchPage from "../pages/MatchPage";
 import ChatPage from "../pages/ChatPage";
 
+import ImagenPrueba from "./ImagenPrueba/ImagenPrueba";
+
 function AppContent() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -47,6 +49,8 @@ function AppContent() {
       <Route path={REGISTER221} element={<Register221 />} />
       <Route path={MATCH} element={<MatchPage />} />
       <Route path={CHAT} element={<ChatPage />} />
+      
+      <Route path="/imagen" element={<ImagenPrueba/>}/>
     </Routes>
   );
 }

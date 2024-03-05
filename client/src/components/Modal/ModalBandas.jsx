@@ -34,7 +34,7 @@ const ModalBandas = () => {
 
                     <div className=" bg-[#6C2B6D] px-4 pt-4 pb-2  rounded-lg 
                      w-90 md:w-80 text-white">
-                        {/* <div > */}
+                        
                         <p className="text-l text-center ">Escoge tus bandas favoritas!</p>
                         <div className="relative z-10 -top-14 right-2 justify-end">
                             <button
@@ -56,7 +56,7 @@ const ModalBandas = () => {
                                 />
                             ))}
                         </div>
-                        {/* </div> */}
+                       
                         <div className="flex items-center justify-center mt-4 mb-4">
                             <button onClick={handlePrevPage} disabled={currentPage === 1}>
                                 <ChevronsLeft />

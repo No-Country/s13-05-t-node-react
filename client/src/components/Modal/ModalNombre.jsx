@@ -28,7 +28,7 @@ const ModalNombre = () => {
     return (
 
         <>
-            <button className="rounded-full" onClick={openModal}>
+            <button className="rounded-full " onClick={openModal}>
                 <FaPenToSquare color="#BB7EBC" />
             </button>
             {showModal && (
@@ -65,25 +65,6 @@ const ModalNombre = () => {
 
 
                         </form>
-
-                        {/* <form action="onSubmit" onSubmit={handleSubmit(onSubmit)}>
-                            <p className="text-center text-3xl pb-2">Cambiar nombre</p>
-                            <div>
-                                <Input
-                                    labelText="Nombre"
-                                    type="text"
-                                    placeholder="Introduce tu nombre"
-                                    name="name"
-                                    register={register}
-                                    error={errors.email?.message}
-                                   
-                                />
-                            </div>
-
-                           
-                            
-                        </form> */}
-
 
                     </div>
                 </dialog>

@@ -15,6 +15,7 @@ function ProfileContent() {
   const bands = useSelector(getBands)
   const nombre = useSelector(getNombre)
   const active = useSelector(getActive)
+  // const image = useSelector(getFotos)
 
 
 
