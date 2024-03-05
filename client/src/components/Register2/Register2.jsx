@@ -1,8 +1,9 @@
 import LOGO from "../../assets/LOGO.png";
 import REGISTER2 from "../../assets/REGISTER2.png";
+import useAboutMe from "../../hooks/useAboutM";
 import ButtonReg from "../reusable-components/Buttons/ButtonReg";
 
-const data = [
+const dataAbout = [
   {
     name: "Guitarrista",
   },
@@ -38,7 +39,10 @@ const data = [
   },
 ];
 
-function Register2() {
+const Register2 = () => {
+
+  const { handleAboutClick, handleHome } = useAboutMe()
+
   return (
     <div className="w-screen min-h-[140vh] sm:min-h-screen flex bg-black">
       <div className="relative">
@@ -90,23 +94,28 @@ function Register2() {
               }}
             >
               <h1 className="text-3xl text-center">¡Háblanos de ti!</h1>
-              <form
-                action="submit"
-                className="flex flex-col my-6 border-b-[3.5px] border-white pb-8"
-              >
-                <div className="grid grid-cols-2 gap-5">
-                  {data.map((e) => (
-                    <ButtonReg key={e.name} text={e.name} />
+              <div className="flex items-center justify-center pt-6">
+    
+                <div className="grid grid-cols-3 gap-5 w-full">
+                  {dataAbout.map((about) => (
+                    <ButtonReg 
+                      key={about.name}
+                      text={about.name}
+                      onClick={() => handleAboutClick(about.name)}                   
+                    />
                   ))}
                 </div>
-              </form>
-              <span className="-mt-[38px] flex items-center justify-center mx-auto text-center w-max px-1 bg-[#6C2B6D]">
+            </div>
+             
+              <span className=" pt-14 -mt-[38px] flex items-center justify-center mx-auto text-center w-max px-1 bg-[#6C2B6D]">
                 Puedes cambiar estos ajustes cuando quieras
               </span>
               <div className="flex items-center flex-col my-6">
                 <button
                   type="submit"
                   className="bg-[#BB7EBC] btn border-none w-full text-white rounded-3xl"
+                  onClick={handleHome} 
+
                 >
                   Siguiente
                 </button>
@@ -119,4 +128,4 @@ function Register2() {
   );
 }
 
-export default Register2;
+export default Register2 

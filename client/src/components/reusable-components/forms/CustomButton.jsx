@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/prop-types
-function CustomButton({ onClick, text, icon: Icon, className }) {
+const CustomButton = ({ onClick, text, icon: Icon, className }) => {
   const handleClick = () => {
     onClick();
   };
@@ -12,6 +12,6 @@ function CustomButton({ onClick, text, icon: Icon, className }) {
       {text}
     </button>
   );
-}
+};
 
 export default CustomButton;

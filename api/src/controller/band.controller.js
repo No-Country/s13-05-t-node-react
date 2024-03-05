@@ -1,13 +1,10 @@
-const bandModel = require("../models/band.models")
+const bandService = require("../services/band.services")
 
 const createBand = async (req, res) => {
     try {
         const { name } = req.body
+        await bandService.createBand(name, res)
 
-        if (!name) return res.status(400).json({ error: "Debe ingresar el nombre de la banda" })
-
-        const newBand = await bandModel.create({ name })
-        res.status(201).json({ message: "Banda creada", payload: newBand })
     }
     catch (err) {
         res.status(500).json({
@@ -23,9 +20,7 @@ const allBands = async (req, res) => {
         queryPage = +queryPage || 1
         limit = +limit || 50
 
-        const { docs, page, totalPages, hasNextPage, nextPage, hasPrevPage, prevPage } = await bandModel.paginate({ status: 'active' }, { page: queryPage, limit })
-        const bands = { bands: docs, page, totalPages, hasNextPage, nextPage, hasPrevPage, prevPage }
-        res.status(200).json(bands)
+        await bandService.allBands(queryPage, limit, res)
     }
     catch (err) {
         res.status(500).json({

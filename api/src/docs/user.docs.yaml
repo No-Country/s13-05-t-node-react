@@ -35,20 +35,33 @@ paths:
                   type: array
                   items:
                     type: string
+                likes:
+                  type: array
+                  items:
+                    type: object
                 ultimaPosicion:
                   type: object
+                  properties:
+                    lat:
+                      type: string
+                    lon:
+                      type: string
                 enBuscaDe:
                   type: array
                   items:
                     type: string
                 activo:
-                  type: boolean                   
+                  type: boolean
+                google:
+                  type: boolean
       responses:
         "201":
           description: Se registro correctamente el usuario
+        "400":
+          description: Error en la solicitud
         "500":
-          description: Error al intentar conectar a la db
-  
+          description: Error en el servidor
+
   /api/usuario/login:
     post:
       summary: Login de usuario
@@ -64,13 +77,37 @@ paths:
                 correo:
                   type: string
                 password:
-                  type: string               
+                  type: string
       responses:
-        "201":
-          description: Login correctamente el usuario
-        "500":
-          description: Error al intentar conectar a la db
+        "200":
+          description: Se realizo correctamente el login
+        "404":
+          description: No existe este usuario
+        "400":
+          description: Error en la solicitud
 
+  /api/usuario/likes:
+    post:
+      summary: Crear un like a un usuario
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idUser:
+                  type: string
+                idLike:
+                  type: string
+
+      responses:
+        "200":
+          description: Like agregado con éxito
+        "500":
+          description: Error del servidor
 
   /api/usuario/list/{userId}:
     get:
@@ -82,15 +119,51 @@ paths:
           in: path
           description: id de usuario
           schema:
-            type: String
+<<<<<<< HEAD
+            type: string
       
+=======
+            type: String
+>>>>>>> 1f7e0ae3e17d30be8bff8ae6b7b5db6a7ad02f19
 
       responses:
-        "201":
-          description: Se trajo correctamente el usuario
-        "500":
-          description: Error al intentar conectar a la db
-  
+        "200":
+          description: Se obtuvo correctamente el usuario
+        "400":
+          description: Error en la solicitud
+
+
+  /api/usuario/match/profile/{userId}:
+    get:
+      summary: traer usuario matcheado
+      tags:
+        - User
+      parameters:
+        - name: userId
+          in: path
+          description: id de usuario
+          schema:
+            type: String
+
+      responses:
+        "200":
+          description: Se trajo correctamente la lista de matchs
+
+  /api/usuario/match/list/{userId}:
+    get:
+      summary: traer matchs de un usuario
+      tags:
+        - User
+      parameters:
+        - name: userId
+          in: path
+          description: id de usuario
+          schema:
+            type: String
+
+      responses:
+        "200":
+          description: Se trajo correctamente la lista de matchs
 
   /api/usuario/{userId}:
     put:
@@ -102,7 +175,7 @@ paths:
           in: path
           description: id de usuario
           schema:
-            type: String
+            type: string
 
       requestBody:
         required: true
@@ -127,19 +200,39 @@ paths:
                   type: array
                   items:
                     type: string
+                tuneMatch:
+                  type: array
+                  items:
+                    type: string
+                likes:
+                  type: array
+                  items:
+                    type: object
                 ultimaPosicion:
                   type: object
+                  properties:
+                    lat:
+                      type: string
+                    lon:
+                      type: string
                 enBuscaDe:
                   type: array
                   items:
                     type: string
+                activo:
+                  type: boolean
+                google:
+                  type: boolean
 
       responses:
         "201":
           description: actualizacion del usuario correctamente
         "500":
-          description: Error al intentar conectar a la db
+          description: Error en el servidor
+        "400":
+          description: Error en la solicitud
 
+  
 
 components:
   schemas:
@@ -147,51 +240,99 @@ components:
       type: object
       properties:
         _id:
-          type: ObjectId
+          type: string
           description: id autogenerado
         nombre:
-          type: String
+          type: string
           description: el nombre del usuario
         correo:
-          type: String
+          type: string
           description: el correo del usuario
         password:
-          type: String
+          type: string
           description: password del usuario
         miGenero:
-          type: String
+          type: string
           description: El sexo del usuario
         fotos:
-          type: Array
+          type: array
           description: las fotos del usuario
+          items:
+            type: string
         bandas:
-          type: Array
-          description: bandas elejidas del usuario
+          type: array
+          description: bandas elegidas del usuario
+          items:
+            type: string
         generos:
-          type: Array
-          description: los generos elejidos del usuario
+          type: array
+          description: los generos elegidos del usuario
+          items:
+            type: string
         tuneMatch:
-          type: Array
+          type: array
           description: las personas con quien hizo match el usuario
-        ultimaPosicion:
-          type: Object
-          description: La ultima ubicacion del usuario
-        enBuscaDe:
+<<<<<<< HEAD
+          items:
+            type: string
+=======
+        likes:
           type: Array
+          description: las personas que le dieron like a este usuario
+>>>>>>> 1f7e0ae3e17d30be8bff8ae6b7b5db6a7ad02f19
+        ultimaPosicion:
+          type: object
+          description: La ultima ubicacion del usuario
+          properties:
+            lat:
+              type: string
+            lon:
+              type: string
+        enBuscaDe:
+          type: array
           description: Lo que busca el usuario con nuestra aplicacion
+          items:
+            type: string
         activo:
-          type: Boolean
+          type: boolean
           description: Si esta activo el usuario
+        google:
+          type: Boolean
+          description: Si inicio sesion con google o no
+
       example:
-        _id: ObjectId("hfhnf65634bdhbdfjh")
+        _id: "hfhnf65634bdhbdfjh"
         nombre: Santiago
         correo: santiago@gmail.com
         password: xxxxx
         miGenero: masculino
+<<<<<<< HEAD
         fotos: ['urlDeFoto','otraUrlDeFoto']
         bandas: ['AC/DC','Aerosmith']
         generos: ['Rock', 'Pop']
         tuneMatch: ['hfhnf65634bdhbdfjh', 'hfhnf65634bdhbdfjh']
-        ultimaPosicion: {1032, 1123}
+        ultimaPosicion:
+          lat: -32.5534
+          lon: -30.666
         enBuscaDe: ['Formar una banda']
+=======
+        fotos: ["urlDeFoto", "otraUrlDeFoto"]
+        bandas: ["AC/DC", "Aerosmith"]
+        generos: ["Rock", "Pop"]
+        tuneMatch: ["hfhnf65634bdhbdfjh", "hfhnf65634bdhbdfjh"]
+        likes: [{userId: hfhnf65634bdhbdfjh, date: 1709296805778, status: "activo", intentos: 1}]
+        ultimaPosicion: { "lat": -31.9545644, "lon": -64.5696011 }
+        enBuscaDe: ["Formar una banda"]
+>>>>>>> 1f7e0ae3e17d30be8bff8ae6b7b5db6a7ad02f19
         activo: true
+        google: false
+
+    Like:
+      type: object
+      properties:
+        idUser:
+          type: String
+          description: id del usuario que esta realizando el like
+        idLike:
+          type: String
+          description: id del usuario que recibe el like

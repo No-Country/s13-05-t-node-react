@@ -1,4 +1,4 @@
-const Server = require('./src/app/app.server.js')
+const ExpressServer = require("./src/app/app.server.js");
 
-const app = new Server()
+const app = new ExpressServer();
 app.listen()

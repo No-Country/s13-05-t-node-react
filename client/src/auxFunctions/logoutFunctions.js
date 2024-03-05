@@ -1,21 +1,18 @@
 import { logout } from "../redux/authSlice";
 
-export const revokeGoogleAccess = (dispatch, handleLogoutError) => {
+export const revokeAccess = (dispatch, handleLogoutError) => {
   return new Promise((resolve, reject) => {
-    window.google.accounts.id.disableAutoSelect();
-    const emailTuneMatch = localStorage.getItem("emailTuneMatch");
-
-    window.google.accounts.id.revoke(emailTuneMatch, (done) => {
-      if (done) {
-        console.log("Revocación exitosa");
-        localStorage.removeItem("emailTuneMatch");
-        dispatch(logout());
-        resolve(); // Resuelve la promesa si la revocación fue exitosa
-      } else {
-        console.error("Error al revocar el consentimiento");
-        handleLogoutError();
-        reject(); // Rechaza la promesa si hubo un error
-      }
-    });
+    try {
+      // Limpia completamente el localStorage
+      localStorage.clear();
+      console.log("LocalStorage limpiado exitosamente");
+      dispatch(logout());
+      resolve();
+    } catch (error) {
+      // Si ocurre un error, maneja el logout y rechaza la promesa
+      console.error("Error al limpiar el localStorage:", error);
+      handleLogoutError();
+      reject(error);
+    }
   });
 };

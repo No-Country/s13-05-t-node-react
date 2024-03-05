@@ -1,103 +1,23 @@
 
 import LOGO from "../../assets/LOGO.png";
 import REGISTER22 from "../../assets/generos.png";
+import useGeneros from "../../hooks/useGeneros";
 import ButtonGenero from "./ButtonGenero";
-import { useNavigate } from "react-router-dom";
-
-
-const data = [
-    {
-        name: "Rock",
-    },
-    {
-        name: "Pop",
-    },
-    {
-        name: "Baterista",
-    },
-    {
-        name: "Cantante",
-    },
-    {
-        name: "Hip Hop",
-    },
-    {
-        name: "R&B",
-    },
-    {
-        name: "Electrónica",
-    },
-    {
-        name: "Jaz",
-    },
-    {
-        name: "Folk",
-    },
-    {
-        name: "Clásica",
-    },
-    {
-        name: "Funk",
-    },
-    {
-        name: "Blues",
-    },
-    {
-        name: "Metal",
-    },
-    {
-        name: "Country",
-    },
-    {
-        name: "Raggae",
-    },
-    {
-        name: "Reggaeton",
-    },
-    {
-        name: "Cumbia",
-    },
-    {
-        name: "Dance",
-    },
-    {
-        name: "Disco",
-    },
-    {
-        name: "80´s",
-    },
-    {
-        name: "Punk",
-    },
-    {
-        name: "Grunge",
-    },
-    {
-        name: "Lo-fi",
-    },
-    {
-        name: "Otro",
-    },
-];
+import usePagination from "../../hooks/usePagination";
+import { ChevronsLeft, ChevronsRight } from "lucide-react";
 
 const Register22 = () => {
-    const navigate = useNavigate();
     
-    let aux = []
+    const { handleGeneroClick, handleRegister23 } = useGeneros()
 
-    const handleGeneroClick = (genero) => {
-        const arrayBefore = aux.length
-        aux = aux.filter(item => item !== genero)
-        const arrayCurrent = aux.length 
-        if (arrayBefore === arrayCurrent) { aux = [...aux, genero]}
-        console.log(aux)
-    };  
-
-    const register23 = () => {
-        console.log(aux)
-        navigate("/register2");
-    };
-
+    const { 
+        currentPage,
+        currentItems,
+        totalPage,
+        handleNextPage,
+        handlePrevPage 
+    } = usePagination();
+   
     return (
         <div className="w-screen  min-h-[140vh] sm:min-h-screen flex bg-black ">
             <div className="relative">
@@ -141,7 +61,7 @@ const Register22 = () => {
                                 mismos gustos. ¡Comparte tu pasión musical y
                                 descubre nuevas  experiencias con personas afines!
                             </p>
-                            <div className="flex items-center justify-center  my-5 sm:my-10"></div>
+                        <div className="flex items-center justify-center  my-5 sm:my-10"></div>
                         </div>
                         <div
                             className="place-content-end w-11/12 mx-auto sm:mx-0 sm:w-1/2 md:w-1/3 px-4 py-6 rounded-lg bg-opacity-95"
@@ -154,32 +74,43 @@ const Register22 = () => {
                             <h1 className="text-3xl text-center -mt-3">Escoge tus generos musicales preferidos!</h1>
                             <div className="flex items-center justify-center pt-6">
                                 <div className="grid grid-cols-3 gap-5 w-full">
-                                    {data.map((genero, index) => (
-                                        <ButtonGenero 
-                                        key={index} 
-                                        text={genero.name} 
-                                        onClick={() => handleGeneroClick(genero.name)}
-                                    />
-                 
+                                    {currentItems?.map((genero) => (
+                                        <ButtonGenero
+                                            key={genero?._id}
+                                            id={genero?._id}
+                                            text={genero?.name}
+                                            onClick={() => handleGeneroClick(genero?._id)}
+                                          
+                                        />
                                     ))}
                                 </div>
                             </div>
                           
-                            <span className=" pt-14 -mt-[38px] flex items-center justify-center mx-auto text-center w-max px-1 bg-[#6C2B6D]">
+                            <span className=" pt-14 -mt-[38px] flex items-center justify-center mx-auto text-center w-max  bg-[#6C2B6D]">
                                 Puedes cambiar estos ajustes cuando quieras
                             </span>
                             <div className="flex items-center flex-col my-6">
                                 <button
                                     className="bg-[#BB7EBC] btn border-none w-full text-white rounded-3xl"
-                                    onClick={register23}
+                                    onClick={handleRegister23}
                                 >
                                     Siguiente
+                                </button>
+                            </div>
+                            <div className="flex items-center justify-center mt-6">
+                                <button onClick={handlePrevPage} disabled={currentPage === 1}>
+                                    <ChevronsLeft/>
+                                </button>
+                                <span className="mx-2">{currentPage}</span>
+                                <button onClick={handleNextPage} disabled={currentPage === totalPage}>
+                                    <ChevronsRight />
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     );
 }

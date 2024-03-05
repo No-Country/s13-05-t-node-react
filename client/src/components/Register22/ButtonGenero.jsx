@@ -1,12 +1,25 @@
-import{ useState } from 'react';
+import { useState, useEffect } from 'react';
+import useGeneros from '../../hooks/useGeneros';
 
 /* eslint-disable react/prop-types */
-const ButtonGenero = ({ 
-    text, 
-    onClick 
-}) => {
+const ButtonGenero = ({ text, onClick }) => {
+    // Obtener el estado inicial desde localStorage, si está disponible
+    const initialState = localStorage.getItem(`buttonState_${text}`) === 'true';
+    const [isClicked, setIsClicked] = useState(initialState);
 
-    const [isClicked, setIsClicked] = useState(false);
+    const  { buttonGeneroStorege } = useGeneros()
+
+    useEffect(() => {
+        // Guardar el estado en localStorage cada vez que cambie
+        localStorage.setItem(`buttonState_${text}`, isClicked);
+       
+        // Eliminar todo el contenido del localStorage
+        // console.log(buttonGeneroStorege)
+        // if (!buttonGeneroStorege) { 
+        //     localStorage.clear() 
+        // }
+        
+    }, [isClicked, text, buttonGeneroStorege]);
 
     const handleClick = () => {
         setIsClicked(!isClicked);
@@ -23,10 +36,10 @@ const ButtonGenero = ({
             {text}
         </button>
     );
-
 };
 
 export default ButtonGenero;
+
 
 
 

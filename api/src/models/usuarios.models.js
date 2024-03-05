@@ -7,7 +7,7 @@ const UserSchema = Schema({
     type: String,
     required: [true, "Debe Ingresar un nombre de usuario"],
   },
-  
+
   correo: {
     type: String,
     required: [true, "Debe Ingresar un correo"],
@@ -38,7 +38,46 @@ const UserSchema = Schema({
   ],
 
   tuneMatch: {
-    type: [Schema.Types.Mixed],
+    type: [{
+      tuneMatchId: { type: Schema.Types.ObjectId, ref: "Usuario" },
+      nuevo: { type: Boolean, default: true },
+      nombre: { type: String },
+      generos: [{ type: String }],
+      bandas: [{ type: String }],
+      fotos: [{ type: String }],
+      miGenero: { type: String },
+      enBuscaDe: [{ type: String }],
+      descripcion: { type: String },
+      ultimaPosicion: {
+        lat: {
+          type: Number,
+          default: null,
+        },
+        lon: {
+          type: Number,
+          default: null,
+        },
+      },
+
+    }],
+    default: [],
+  },
+  misLikes: {
+    type: [{
+      likedId: { type: Schema.Types.ObjectId, ref: "Usuario" },
+      date: { type: Date, default: Date.now },
+      nombre: { type: String },
+      fotos: [{ type: String }]
+    }],
+    default: []
+  },
+  likes: {
+    type: [{
+      userId: { type: Schema.Types.ObjectId, ref: "Usuario" },
+      date: { type: Date, default: Date.now },
+      status: { type: String, default: 'activo' },
+      intentos: { type: Number, default: 0 }
+    }],
     default: [],
   },
 
@@ -55,20 +94,17 @@ const UserSchema = Schema({
 
   enBuscaDe: [{ type: String }],
 
+  descripcion: { type: String },
+
   activo: { type: Boolean, default: true },
 
   google: { type: Boolean, default: false },
 });
 
 UserSchema.methods.toJSON = function () {
-  const { __v, _id: id, password, ...usuario } = this.toObject();
+  const { __v, _id: id, likes, password, ...usuario } = this.toObject();
   return { id, ...usuario };
 };
-
-UserSchema.pre("findOne", function () {
-  this.populate("generos");
-  this.populate("bandas");
-});
 
 UserSchema.plugin(paginate)
 module.exports = model("Usuario", UserSchema);

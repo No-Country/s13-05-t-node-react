@@ -38,7 +38,7 @@ paths:
           description: Ingrese el limite de los resultados que quiere obtener
 
       responses:
-        "201":
+        "200":
           description: Se trajo correctamente las bandas
         "500":
           description: Error al intentar conectar a la db

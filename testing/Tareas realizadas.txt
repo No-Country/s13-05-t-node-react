@@ -1,0 +1,13 @@
+Tareas de QA realizadas:
+------------------------
+
+Semana 0, se convinieron las formas y plataformas a ser utilizadas.
+
+Semana 1, se fueron creando los requerimientos y casos de pruena con sus correspondientes criterios de aceptación basados en las historias de usuario que iban surgiendo (no había nada para testear, pero ya planificar estas tareas).
+
+Semana 2, a la par de las entregas que iban realizando los desarrolladores, se fueron realizando las pruebas con la herramienta Test Monitor y se fué aceitanto el trabajo con los chicos en la gestión de defectos o necesidades.
+
+Semana 3, a full probando las integraciones de los componentes a medida que se realizaban, ya afiladas las pruebas al detalle y probando todos los casos felices o no felices de la app.
+
+Se adjuntan capturas de la herramienta Test Monitor como prueba de trabajo realizado por el equipo de QA.
+
