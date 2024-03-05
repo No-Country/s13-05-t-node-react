@@ -1,7 +1,5 @@
 const Usuario = require('../models/usuarios.models')
 
-
-
 const bycript = require('bcryptjs')
 
 const calcularDistancia = require('../../helpers/distance/haversine')
