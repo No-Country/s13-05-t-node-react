@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getFotos } from "../../redux/authSlice";
 import { BsFillSendFill } from "react-icons/bs";
+import { API_URL_CHAT } from "../../config/api";
 
-const socket = io.connect("http://localhost:8080");
+const socket = io.connect(API_URL_CHAT);
 
 function Chat() {
   //Room State

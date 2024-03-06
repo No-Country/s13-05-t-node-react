@@ -78,7 +78,6 @@ export const sendToBackend = (
   })
     .then((resp) => resp.json())
     .then((res) => {
-      dispatch(updateAll(res.usuario));
       dispatch(login());
       localStorage.setItem(
         "emailTuneMatch",

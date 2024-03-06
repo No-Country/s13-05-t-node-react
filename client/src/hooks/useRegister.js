@@ -29,22 +29,46 @@ const useRegister = () => {
     console.log(data, ultimaPosicion);
 
     if (!checkbox) {
-      Swal.fire("Error", "Acepte los terminos y condiciones", "error");
+      Swal.fire({
+        title: "Error",
+        text: "Acepte los términos y condiciones",
+        icon: "error",
+        background: "#2c2c2c",
+        color: "white",
+      });
       return;
     }
 
     if (!name) {
-      Swal.fire("Error", "El nombre es necesario", "error");
+      Swal.fire({
+        title: "Error",
+        text: "El nombre es necesario",
+        icon: "error",
+        background: "#2c2c2c",
+        color: "white",
+      });
       return;
+    }
+
+    if (name.length < 6) {
+      Swal.fire({
+        title: "Error",
+        icon: "error",
+        text: "El nombre debe tener al menos 6 caracteres",
+        background: "#2c2c2c",
+        color: "white",
+      });
     }
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!email.match(emailRegex)) {
-      Swal.fire(
-        "Error",
-        "Ingrese una dirección de correo electrónico válida",
-        "error"
-      );
+      Swal.fire({
+        title: "Error",
+        text: "Ingrese una dirección de correo electrónico válida",
+        icon: "error",
+        background: "#2c2c2c",
+        color: "white",
+      });
       return;
     }
 
@@ -60,16 +84,24 @@ const useRegister = () => {
     // }
 
     if (!password) {
-      Swal.fire(
-        "Error",
-        "La contraseña debe contener al menos 6 dígitos y un carácter especial (., *, +)",
-        "error"
-      );
+      Swal.fire({
+        title: "Error",
+        text: "La contraseña debe contener al menos 6 dígitos y un carácter especial (., *, +)",
+        icon: "error",
+        background: "#2c2c2c",
+        color: "white",
+      });
       return;
     }
 
     if (password !== repeatPassword) {
-      Swal.fire("Error", "Las contraseñas no coincide", "error");
+      Swal.fire({
+        title: "Error",
+        text: "Las contraseñas no coinciden",
+        icon: "error",
+        background: "#2c2c2c",
+        color: "white",
+      });
       return;
     }
 
@@ -99,18 +131,29 @@ const useRegister = () => {
             color: "white",
             background: "#2c2c2c",
             icon: "success",
-            imageAlt: "Custom image",
-            text: "Completa tu registro",
+            text: "Completa tu registro siguiendo los pasos",
           });
         }
       })
       .catch(async (error) => {
         if (error.response.status === 400) {
-          Swal.fire("Error", "Usuario existente", "error");
+          Swal.fire({
+            title: "Error",
+            text: "Usuario existente",
+            icon: "error",
+            color: "white",
+            background: "#2c2c2c",
+          });
           return;
         }
 
-        Swal.fire("Error", "Ocurrió un error durante el registro", "error");
+        Swal.fire({
+          title: "Error",
+          text: "Ocurrió un error durante el registro",
+          icon: "error",
+          color: "white",
+          background: "#2c2c2c",
+        });
       });
   };
 

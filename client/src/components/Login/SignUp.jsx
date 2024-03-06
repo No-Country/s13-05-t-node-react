@@ -143,7 +143,7 @@ const SignUp = () => {
                   {repeatShowPassword ? <Eye /> : <EyeOff />}
                 </button>
               </div>
-              <div className=" bg-[#BB7EBC] hover:text-[#BB7EBC] btn border-none w-full text-white rounded-3xl">
+              <div className="bg-[#BB7EBC] btn border-none w-full text-white rounded-3xl">
                 <RegisterButton text="Registrarse" />
               </div>
               <p className="flex items-center justify-center pt-4">

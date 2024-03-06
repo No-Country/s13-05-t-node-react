@@ -17,10 +17,10 @@ const savingImage = async img => {
   try {
     const result = await cloudinary.uploader.upload(img, opts);
     if (result && result.secure_url) return result.secure_url;
-    else throw new Error("No se pudo cargar la imagen".red);
+    else throw new Error("No se pudo cargar la imagen");
   }
   catch (err) {
-    throw new Error('ERROR!'.red, err);
+    throw new Error('ERROR!', err);
   }
 }
 

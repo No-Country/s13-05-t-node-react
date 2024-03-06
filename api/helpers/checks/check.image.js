@@ -1,19 +1,14 @@
 const { check } = require('express-validator')
-const multer = require('multer')
-const upload = multer({ dest: 'uploads/' })
 const validarCampos = require('../../src/middlewares/validarCampos')
 
 const POST_IMAGE = [
-  upload.single('image'),
+
   check('id')
     .notEmpty().withMessage('Id no debe estar vacío')
-    .isString().withMessage('el id proporcionado no es un String')
-    .custom((_, { req }) => {
-      if (!req.file) {
-        throw new Error('No se proporcionó ninguna imagen');
-      }
-      return true;
-    }),
+    .isMongoId().withMessage('El id No es id Válido'),
+  check('image')
+    .notEmpty().withMessage('No viene imagen adjunta')
+  ,
   validarCampos,
 ]
 

@@ -25,37 +25,48 @@ const useLoginGoogle = () => {
       if (id) {
         dispatch(updateAll(data.usuario));
         dispatch(login());
-        navigate("/register22");
-
         Swal.fire({
-          title: "Bienvenido a TuneMatch!",
+          title: "¿Eres mayor de  18 años?",
           background: "#2c2c2c",
+          icon: "question",
+          iconColor: "#BB7EBC",
           color: "white",
-          imageUrl:
-            "https://images.pexels.com/photos/4406761/pexels-photo-4406761.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-          imageWidth: 350,
-          imageHeight: 200,
-          imageAlt: "Custom image",
-          text: "Conecta a través de la música🎷",
+          showCancelButton: true,
+          confirmButtonText: "Sí, soy mayor",
+          cancelButtonText: "No, soy menor",
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          reverseButtons: true,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Si el usuario confirma que es mayor de  18 años, redirigimos a /register22
+            Swal.fire({
+              title: "¡Bienvenido a TuneMatch!",
+              background: "#2c2c2c",
+              color: "white",
+              icon: "success",
+              imageAlt: "Custom image",
+              text: "Completa tu registro siguiendo los pasos",
+            });
+            console.log("Esto es en handleLoginSuccess:", response);
+            navigate("/register22");
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+            // Si el usuario niega ser mayor de  18 años, muestro un alert de disculpa
+            Swal.fire({
+              background: "#2c2c2c",
+              title: "Lo sentimos",
+              text: "Debes ser mayor de  18 años para ingresar.",
+              color: "white",
+              icon: "info",
+            });
+          }
         });
-        console.log("Esto es en handleLoginSuccess:", response);
-        navigate("/home");
       }
     } catch (error) {
       console.error("Google login error:", error);
-      Swal.fire({
-        title: "Error de autenticación",
-        text: "Prueba ingresar un cuenta válida",
-        background: "#2c2c2c",
-        color: "white",
-        icon: "error",
-      });
+      handleLoginError(error);
     }
   };
-
-  //    const result = () => {
-
-  //    }
 
   const handleLoginError = (error) => {
     console.error("Google login error:", error);
